@@ -18,7 +18,7 @@
 #define ICE_STUN_RESPONSE_RECEIVED_FLAG ( 1 << 1 )
 #define ICE_STUN_REQUEST_RECEIVED_FLAG  ( 1 << 2 )
 #define ICE_STUN_RESPONSE_SENT_FLAG     ( 1 << 3 )
-#define ICE_STUN_REQUEST_NOMINATION_FLAG ( 1 << 4 )
+#define ICE_STUN_REQUEST_NOMINATION_FLAG    ( 1 << 4 )
 
 #define ICE_STUN_CONNECTIVITY_CHECK_SUCCESSFUL( connectivityCheckFlags )    \
     ( ( connectivityCheckFlags ) == ( ICE_STUN_REQUEST_SENT_FLAG |          \
@@ -95,6 +95,7 @@ typedef enum IceHandleStunPacketResult
     ICE_HANDLE_STUN_PACKET_RESULT_CANDIDATE_PAIR_NOT_FOUND,
     ICE_HANDLE_STUN_PACKET_RESULT_ADDRESS_ATTRIBUTE_NOT_FOUND,
     ICE_HANDLE_STUN_PACKET_RESULT_MATCHING_TRANSACTION_ID_NOT_FOUND,
+    ICE_HANDLE_STUN_PACKET_RESULT_NON_ZERO_ERROR_CODE,
 
     /* Application needs to take action. */
     ICE_HANDLE_STUN_PACKET_RESULT_SEND_RESPONSE_FOR_REMOTE_REQUEST,
@@ -157,15 +158,15 @@ typedef struct IceCryptoFunctions
 
 typedef struct IceCredentials
 {
-    const char * pLocalUsername;
+    const uint8_t * pLocalUsername;
     size_t localUsernameLength;
-    const char * pLocalPassword;
+    const uint8_t * pLocalPassword;
     size_t localPasswordLength;
-    const char * pRemoteUsername;
+    const uint8_t * pRemoteUsername;
     size_t remoteUsernameLength;
-    const char * pRemotePassword;
+    const uint8_t * pRemotePassword;
     size_t remotePasswordLength;
-    const char * pCombinedUsername;
+    const uint8_t * pCombinedUsername;
     size_t combinedUsernameLength;
 } IceCredentials_t;
 
